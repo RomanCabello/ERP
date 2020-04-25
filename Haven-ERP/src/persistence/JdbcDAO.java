@@ -19,10 +19,35 @@ import util.DBUtils;
 
 public class JdbcDAO implements StaffDAO{
 	
-	private static final String DATA_SOURCE = "jdbc:derby://localhost:1527/Haven;';";
+	private static final String DATA_SOURCE = "jdbc:derby://localhost:1527/Haven;";
     private Connection con;
     private ResultSet rs;
     private PreparedStatement pst;
+    
+    
+    @Override
+    public void saveStaff(Staff staff) {
+    	
+    	try {
+			Class.forName("org.apache.derby.jdbc.ClientDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        execute(() -> {
+            
+        	con = DriverManager.getConnection(DATA_SOURCE);
+            
+            pst = con.prepareStatement("INSERT INTO STAFF(FNAME, LNAME, SALARY) VALUES(?, ?, ?)");
+            pst.setString(1, staff.getFname());
+            pst.setString(2, staff.getLname());
+            pst.setInt(3, staff.getSalary());
+            pst.executeUpdate();
+        });
+    }
+    
+    
 
 	@Override
 	public List<Staff> findAll() {

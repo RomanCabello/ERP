@@ -17,7 +17,7 @@
         <ul>
             <li><a href="controller?action=liststaff">Show all</a></li>
             <li><a href="controller?action=readbyid">Show Staff by ID</a></li>
-            <li><a href="controller?action=readcar">Add new Staff</a></li>
+            <li><a href="controller?action=readstaff">Add new Staff</a></li>
         </ul>
          
     </body>

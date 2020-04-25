@@ -12,7 +12,7 @@ public class Staff {
 	
 	private int salary;
 	
-	private String area;
+//	private String area;
 
 	public Long getId() {
 		return id;
@@ -46,13 +46,13 @@ public class Staff {
 		this.salary = salary;
 	}
 
-	public String getArea() {
-		return area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
-	}
+//	public String getArea() {
+//		return area;
+//	}
+//
+//	public void setArea(String area) {
+//		this.area = area;
+//	}
 	
 	@Override
 	

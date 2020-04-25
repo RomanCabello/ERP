@@ -25,7 +25,7 @@
 	</head>
 	<body>
 	
-	<h2>All cars</h2>
+	<h2>All Staff</h2>
 
         <table class="pure-table pure-table-horizontal">
             <thead>
@@ -37,19 +37,19 @@
                 </tr>
             </thead>
 
-            <c:forEach items="${carList}" var='car'>
+            <c:forEach items="${staffList}" var='staff'>
                 <tr>
                     <td>
-                        <c:out value="${car.id}"/>
+                        <c:out value="${staff.id}"/>
                     </td>
                     <td>
-                        <c:out value="${car.Fname}"/>
+                        <c:out value="${staff.fname}"/>
                     </td>
                     <td>
-                        <c:out value="${car.Lname}"/>
+                        <c:out value="${staff.lname}"/>
                     </td>
                     <td>
-                        <c:out value="${car.salary}"/>
+                        <c:out value="${staff.salary}"/>
                     </td>                    
                 </tr>
             </c:forEach>          
