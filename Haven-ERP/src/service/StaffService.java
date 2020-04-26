@@ -15,6 +15,13 @@ public class StaffService implements IStaffService{
     }
 	
 	@Override
+    public Staff findStaff(Long id) {
+
+        StaffDAO staffDAO = new JdbcDAO();
+        return staffDAO.findStaff(id);
+    }
+	
+	@Override
 	public void saveStaff(Staff staff) {
 		
 		StaffDAO staffDAO = new JdbcDAO();

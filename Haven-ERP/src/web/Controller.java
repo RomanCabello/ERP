@@ -25,12 +25,16 @@ public class Controller extends HttpServlet {
 	private static final String ALL_STAFF_VIEW = "AllStaff.jsp";
 	private static final String READ_STAFF_VIEW = "readStaff.jsp";
 	private static final String STAFF_SAVED_VIEW = "savedstaff";
+	private static final String READ_STAFF_BY_ID_VIEW = "readStaffId.jsp";
+    private static final String SHOW_STAFF_VIEW = "showStaff.jsp";
 	
 	private static final String UNKNOWN_VIEW = "unknown.jsp";
 	
 	private static final String LIST_STAFF_ACTION = "liststaff";
+	private static final String READ_CAR_BY_ID_ACTION = "readbyid";
 	private static final String READ_STAFF_ACTION = "readstaff";
 	private static final String SAVE_STAFF_ACTION = "savestaff";
+	private static final String VIEW_STAFF_ACTION = "viewstaff";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -61,6 +65,24 @@ public class Controller extends HttpServlet {
 		if (READ_STAFF_ACTION.equals(actionName)) {
             page = READ_STAFF_VIEW;
         } 
+		
+		if (READ_CAR_BY_ID_ACTION.equals(actionName)) {
+            page = READ_STAFF_BY_ID_VIEW;
+        }
+		
+		if (VIEW_STAFF_ACTION.equals(actionName)) {
+
+            String sid = request.getParameter("staffId");
+
+            
+
+                IStaffService service = new StaffService();
+                Long staffId = Long.valueOf(sid);
+                request.setAttribute("returnedStaff", service.findStaff(staffId));
+
+                page = SHOW_STAFF_VIEW;
+            
+        }
 		
 		
 		RequestDispatcher disp = getServletContext().getRequestDispatcher("/WEB-INF/pages/" + page);

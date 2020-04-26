@@ -48,6 +48,39 @@ public class JdbcDAO implements StaffDAO{
     }
     
     
+    @Override
+    public Staff findStaff(Long id) {
+    	
+    	try {
+			Class.forName("org.apache.derby.jdbc.ClientDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+
+        Staff staff = new Staff();
+
+        execute(() -> {
+            con = DriverManager.getConnection(DATA_SOURCE);
+            
+            pst = con.prepareStatement("SELECT * FROM STAFF WHERE Id = (?)");
+            pst.setLong(1, id);
+            rs = pst.executeQuery();
+            
+            if (rs.next()) {
+                
+                staff.setId(rs.getLong(1));
+                staff.setFname(rs.getString(2));
+                staff.setLname(rs.getString(3));
+                staff.setSalary(rs.getInt(4));
+            }
+        });
+
+        return staff;
+    }
+    
+    
 
 	@Override
 	public List<Staff> findAll() {
