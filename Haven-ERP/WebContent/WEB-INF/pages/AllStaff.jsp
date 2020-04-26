@@ -59,7 +59,7 @@
                         <c:out value="${staff.lname}"/>
                     </td>
                     <td>
-                        <c:out value="${staff.salary}"/>
+                        $<c:out value="${staff.salary}"/>.00
                     </td>        
                     <td>
                         <a href="controller?action=deletestaff&del=${staff.id}">Delete</a>
