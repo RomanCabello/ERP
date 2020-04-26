@@ -24,7 +24,7 @@ public class Controller extends HttpServlet {
 	
 	private static final String ALL_STAFF_VIEW = "AllStaff.jsp";
 	private static final String READ_STAFF_VIEW = "readStaff.jsp";
-	private static final String STAFF_SAVED_VIEW = "staffSaved.jsp";
+	private static final String STAFF_SAVED_VIEW = "savedstaff";
 	
 	private static final String UNKNOWN_VIEW = "unknown.jsp";
 	
@@ -90,9 +90,18 @@ public class Controller extends HttpServlet {
 			staff.setLname(lname);
 			staff.setSalary(Integer.valueOf(salary));
 			
+			IStaffService service = new StaffService();
+			service.saveStaff(staff);
+			
+			request.getSession().setAttribute("staffFname", sname);
+			request.getSession().setAttribute("staffLname", lname);
+			request.getSession().setAttribute("staffSalary", salary);
+			
 			page = STAFF_SAVED_VIEW;
 			
 		}
+		
+		response.sendRedirect( page);
 		
 	}
 

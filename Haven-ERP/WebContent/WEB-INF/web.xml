@@ -15,4 +15,14 @@
     <url-pattern>/controller</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+        <servlet-name>save</servlet-name>
+        <jsp-file>/WEB-INF/pages/staffSaved.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>save</servlet-name>
+        <url-pattern>/savedstaff</url-pattern>
+    </servlet-mapping>
+  
 </web-app>
