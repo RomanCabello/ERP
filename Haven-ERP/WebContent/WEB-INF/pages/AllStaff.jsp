@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ page import="java.util.ArrayList"%>
 <%@page trimDirectiveWhitespaces="true"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -26,6 +27,10 @@
 	<body>
 	
 	<h2>All Staff</h2>
+	
+	<%ArrayList<String> ids = new ArrayList<String>(); %>
+	
+	<%String x = ""; %>
 
         <table class="pure-table pure-table-horizontal">
             <thead>
@@ -34,10 +39,15 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Salary</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
 
             <c:forEach items="${staffList}" var='staff'>
+            
+            	
+            
                 <tr>
                     <td>
                         <c:out value="${staff.id}"/>
@@ -50,7 +60,13 @@
                     </td>
                     <td>
                         <c:out value="${staff.salary}"/>
-                    </td>                    
+                    </td>        
+                    <td>
+                        <a href="controller?action=deletestaff&del=${staff.id}">Delete</a>
+                    </td>
+                    <td>
+                        <a href="controller?action=liststaff">Update</a>
+                    </td>
                 </tr>
             </c:forEach>          
 

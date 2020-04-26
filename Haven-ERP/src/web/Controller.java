@@ -30,6 +30,7 @@ public class Controller extends HttpServlet {
 	
 	private static final String UNKNOWN_VIEW = "unknown.jsp";
 	
+	private static final String DELETE_STAFF_ACTION = "deletestaff";
 	private static final String LIST_STAFF_ACTION = "liststaff";
 	private static final String READ_CAR_BY_ID_ACTION = "readbyid";
 	private static final String READ_STAFF_ACTION = "readstaff";
@@ -69,6 +70,18 @@ public class Controller extends HttpServlet {
 		if (READ_CAR_BY_ID_ACTION.equals(actionName)) {
             page = READ_STAFF_BY_ID_VIEW;
         }
+		if(DELETE_STAFF_ACTION.equals(actionName))
+		{
+			Long id = Long.valueOf(request.getParameter("del"));
+			IStaffService service = new StaffService();
+			service.deleteStaff(id);
+			
+			
+			request.setAttribute("staffList", service.findAllStaff());
+			
+			page = ALL_STAFF_VIEW;
+		}
+
 		
 		if (VIEW_STAFF_ACTION.equals(actionName)) {
 

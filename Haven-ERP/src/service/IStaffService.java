@@ -8,5 +8,6 @@ public interface IStaffService {
 	public List<Staff> findAllStaff();
 	public void saveStaff(Staff staff);
 	public Staff findStaff(Long id);
+	void deleteStaff(Long id);
 
 }
