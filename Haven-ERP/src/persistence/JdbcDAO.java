@@ -48,6 +48,29 @@ public class JdbcDAO implements StaffDAO{
     }
     
     @Override
+    public void updateStaff(Staff staff) {
+    	
+    	try {
+			Class.forName("org.apache.derby.jdbc.ClientDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+        execute(() -> {
+            
+        	con = DriverManager.getConnection(DATA_SOURCE);
+            
+            pst = con.prepareStatement("UPDATE STAFF SET FNAME = (?), LNAME = (?), SALARY = (?) WHERE ID = (?)" );
+            pst.setString(1, staff.getFname());
+            pst.setString(2, staff.getLname());
+            pst.setInt(3, staff.getSalary());
+            pst.setLong(4, staff.getId());
+            pst.executeUpdate();
+        });
+    }
+    
+    @Override
     public void deleteStaff(Long id) {
     	
     	try {

@@ -27,6 +27,7 @@ public class Controller extends HttpServlet {
 	private static final String STAFF_SAVED_VIEW = "savedstaff";
 	private static final String READ_STAFF_BY_ID_VIEW = "readStaffId.jsp";
     private static final String SHOW_STAFF_VIEW = "showStaff.jsp";
+    private static final String UPDATE_STAFF_VIEW = "updateStaff.jsp";
 	
 	private static final String UNKNOWN_VIEW = "unknown.jsp";
 	
@@ -36,6 +37,10 @@ public class Controller extends HttpServlet {
 	private static final String READ_STAFF_ACTION = "readstaff";
 	private static final String SAVE_STAFF_ACTION = "savestaff";
 	private static final String VIEW_STAFF_ACTION = "viewstaff";
+	private static final String CHANGE_STAFF_ACTION = "changestaff";
+	private static final String UPDATE_STAFF_ACTION = "updatestaff";
+	
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -97,6 +102,20 @@ public class Controller extends HttpServlet {
             
         }
 		
+		if (CHANGE_STAFF_ACTION.equals(actionName)) {
+
+            String sid = request.getParameter("upd");
+
+            
+
+                IStaffService service = new StaffService();
+                Long staffId = Long.valueOf(sid);
+                request.setAttribute("returnedStaff", service.findStaff(staffId));
+
+                page = UPDATE_STAFF_VIEW;
+            
+        }
+		
 		
 		RequestDispatcher disp = getServletContext().getRequestDispatcher("/WEB-INF/pages/" + page);
         disp.forward(request, response);
@@ -134,6 +153,30 @@ public class Controller extends HttpServlet {
 			
 			page = STAFF_SAVED_VIEW;
 			
+		}
+		
+		if(UPDATE_STAFF_ACTION.equals(actionName))
+		{
+			Long id = Long.valueOf(request.getParameter("sid"));
+			String sname = request.getParameter("staffName");
+			String lname = request.getParameter("staffLname");
+			String salary = request.getParameter("staffSalary");
+			
+			Staff staff = new Staff();
+			staff.setId(id);
+			staff.setFname(sname);
+			staff.setLname(lname);
+			staff.setSalary(Integer.valueOf(salary));
+			
+			IStaffService service = new StaffService();
+			service.updateStaff(staff);
+			
+			
+			request.getSession().setAttribute("staffFname", sname);
+			request.getSession().setAttribute("staffLname", lname);
+			request.getSession().setAttribute("staffSalary", salary);
+			
+			page = STAFF_SAVED_VIEW;
 		}
 		
 		response.sendRedirect( page);

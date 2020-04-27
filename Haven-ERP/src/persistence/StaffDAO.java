@@ -9,4 +9,5 @@ public interface StaffDAO {
 	public void saveStaff(Staff staff);
 	public Staff findStaff(Long id);
 	void deleteStaff(Long id);
+	void updateStaff(Staff staff);
 }

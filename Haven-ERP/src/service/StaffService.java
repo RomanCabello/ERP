@@ -34,5 +34,12 @@ public class StaffService implements IStaffService{
 		StaffDAO staffDAO = new JdbcDAO();
 		staffDAO.deleteStaff(id);
 	}
+	
+	@Override
+	public void updateStaff(Staff staff) {
+		
+		StaffDAO staffDAO = new JdbcDAO();
+		staffDAO.updateStaff(staff);
+	}
 
 }

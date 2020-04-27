@@ -28,9 +28,6 @@
 	
 	<h2>All Staff</h2>
 	
-	<%ArrayList<String> ids = new ArrayList<String>(); %>
-	
-	<%String x = ""; %>
 
         <table class="pure-table pure-table-horizontal">
             <thead>
@@ -65,7 +62,7 @@
                         <a href="controller?action=deletestaff&del=${staff.id}">Delete</a>
                     </td>
                     <td>
-                        <a href="controller?action=liststaff">Update</a>
+                        <a href="controller?action=changestaff&upd=${staff.id}">Update</a>
                     </td>
                 </tr>
             </c:forEach>          
