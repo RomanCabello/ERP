@@ -15,13 +15,11 @@
         <p>Available actions:</p>
         
         <ul>
-            <li><a href="controller?action=liststaff">Show all</a></li>
-            <li><a href="controller?action=readbyid">Show Staff by ID</a></li>
-            <li><a href="controller?action=readstaff">Add new Staff</a></li>
+            <li><a href="controller?action=liststaff">Show All Employees</a></li>
+            <li><a href="controller?action=readbyid">Search Staff by ID</a></li>
+            <li><a href="controller?action=readstaff">add new Hire</a></li>
         </ul>
-        
-        hello
-        jkdlñfkajdsf
+
          
     </body>
 </html>

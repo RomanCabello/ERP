@@ -12,8 +12,7 @@ import javax.naming.NamingException;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 
-
-
+import bean.Job;
 import bean.Staff;
 import util.DBUtils;
 
@@ -34,16 +33,36 @@ public class JdbcDAO implements StaffDAO{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	
+//    	pst = con.prepareStatement("SELECT * FROM STAFF WHERE Id = (?)");
+//        pst.setLong(1, id);
+//        rs = pst.executeQuery();
+//        
+//        if (rs.next()) {
+//            
+//            staff.setId(rs.getLong(1));
+//            staff.setFname(rs.getString(2));
+//            staff.setLname(rs.getString(3));
+//            staff.setSalary(rs.getInt(4));
 
         execute(() -> {
             
         	con = DriverManager.getConnection(DATA_SOURCE);
             
-            pst = con.prepareStatement("INSERT INTO STAFF(FNAME, LNAME, SALARY) VALUES(?, ?, ?)");
+            pst = con.prepareStatement("INSERT INTO STAFF(FNAME, LNAME, SALARY) VALUES(?, ?, ?)" , 
+            	      new String[] { "ID"});
             pst.setString(1, staff.getFname());
             pst.setString(2, staff.getLname());
             pst.setInt(3, staff.getSalary());
             pst.executeUpdate();
+            
+            ResultSet rs = pst.getGeneratedKeys();
+            
+            if (rs.next()) {
+                
+                staff.setId(rs.getLong(1));
+            }
+            
         });
     }
     

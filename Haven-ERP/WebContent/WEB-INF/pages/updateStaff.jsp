@@ -20,12 +20,14 @@
 
     <body>
 
-        <form class="pure-form pure-form-stacked" action="controller?action=updatestaff" method="post">
+        <form class="pure-form pure-form-stacked" action="controller?action=updatestaff&id=${returnedStaff.id}" method="post">
 
             <legend>Enter Staff details:</legend>
 
 			<label for="sid">ID:</label>
-			<input id="sid" type="text" name="sid" value="${returnedStaff.id}">
+			<input id="sid" type="text" name="sid" value="${returnedStaff.id}" disabled>
+			
+			
 			
             <label for="staffName">Name:</label>
             <input id="staffName" type="text" name="staffName" value="${returnedStaff.fname}">

@@ -14,6 +14,7 @@
             Successfully saved  <c:out value="${sessionScope.staffFname}"/>
             Successfully saved  <c:out value="${sessionScope.staffLname}"/>
             Staff Salary <c:out value="${sessionScope.staffSalary}"/>
+            ID: <c:out value="${sessionScope.id}"/>
         </p>
 
         <nav>

@@ -1,5 +1,6 @@
 package service;
 
+import bean.Job;
 import bean.Staff;
 import java.util.List;
 

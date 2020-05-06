@@ -24,5 +24,15 @@
         <servlet-name>save</servlet-name>
         <url-pattern>/savedstaff</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>read</servlet-name>
+        <jsp-file>/WEB-INF/pages/readStaff.jsp</jsp-file>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>read</servlet-name>
+        <url-pattern>/Harambe</url-pattern>
+    </servlet-mapping>
   
 </web-app>
