@@ -12,8 +12,20 @@
 				"port": "1527",
 				"database": "Haven",
 				"url": "jdbc:derby://localhost:1527/Haven;create=false",
-				"type": "dev",
-				"handlers": {}
+				"type": "dev"
+			}
+		}
+	},
+	"virtual-models": {
+		"derby_server-171a9631121-631555cf112a7bdf": {
+			"APP": {
+				":JOBS": {
+					"properties": {
+						"erd.diagram.state": {
+							"serialized": "<diagram version=\"1\" name=\"JOBS\" time=\"202005221453\"><entities><data-source id=\"derby_server-171a9631121-631555cf112a7bdf\"><entity id=\"1\" name=\"JOBS\" fq-name=\"APP.JOBS\" order=\"0\" color-bg=\"124,62,31\" x=\"20\" y=\"49\"><path name=\"APP\"/></entity><entity id=\"2\" name=\"STAFF\" fq-name=\"APP.STAFF\" order=\"1\" x=\"146\" y=\"180\"><path name=\"APP\"/></entity><entity id=\"3\" name=\"AREA\" fq-name=\"APP.AREA\" order=\"2\" x=\"273\" y=\"106\"><path name=\"APP\"/></entity><entity id=\"4\" name=\"ROLES\" fq-name=\"APP.ROLES\" order=\"3\" x=\"146\" y=\"20\"><path name=\"APP\"/></entity></data-source></entities><relations><relation name=\"JOBS_FK\" fq-name=\"APP.JOBS.JOBS_FK\" type=\"fk\" pk-ref=\"2\" fk-ref=\"1\"/><relation name=\"ROLES_FK\" fq-name=\"APP.ROLES.ROLES_FK\" type=\"fk\" pk-ref=\"3\" fk-ref=\"4\"/><relation name=\"JOBS_FK_2\" fq-name=\"APP.JOBS.JOBS_FK_2\" type=\"fk\" pk-ref=\"4\" fk-ref=\"1\"/></relations></diagram>"
+						}
+					}
+				}
 			}
 		}
 	},

@@ -1,0 +1,2 @@
+INSERT INTO ROLES (RNAME, AID)
+VALUES('IT2',1), ('IT3',1), ('HR1',2), ('HR2',2), ('HR3',2);

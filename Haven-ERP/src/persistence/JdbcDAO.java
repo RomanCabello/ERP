@@ -34,34 +34,27 @@ public class JdbcDAO implements StaffDAO{
 			e.printStackTrace();
 		}
     	
-//    	pst = con.prepareStatement("SELECT * FROM STAFF WHERE Id = (?)");
-//        pst.setLong(1, id);
-//        rs = pst.executeQuery();
-//        
-//        if (rs.next()) {
-//            
-//            staff.setId(rs.getLong(1));
-//            staff.setFname(rs.getString(2));
-//            staff.setLname(rs.getString(3));
-//            staff.setSalary(rs.getInt(4));
+
 
         execute(() -> {
             
-        	con = DriverManager.getConnection(DATA_SOURCE);
-            
-            pst = con.prepareStatement("INSERT INTO STAFF(FNAME, LNAME, SALARY) VALUES(?, ?, ?)" , 
-            	      new String[] { "ID"});
-            pst.setString(1, staff.getFname());
-            pst.setString(2, staff.getLname());
-            pst.setInt(3, staff.getSalary());
-            pst.executeUpdate();
-            
-            ResultSet rs = pst.getGeneratedKeys();
-            
-            if (rs.next()) {
+        	
                 
-                staff.setId(rs.getLong(1));
-            }
+            	con = DriverManager.getConnection(DATA_SOURCE);
+                
+            	pst = con.prepareStatement("INSERT INTO STAFF(FNAME, LNAME, MAIL) VALUES(?, ?, ?)" , 
+              	      new String[] { "ID"});
+                pst.setString(1, staff.getFname());
+                pst.setString(2, staff.getLname());
+                pst.setString(3, staff.getMail());
+                pst.executeUpdate();
+                
+                ResultSet rs = pst.getGeneratedKeys();
+                
+                if (rs.next()) {
+                    
+                    staff.setId(rs.getLong(1));
+                }
             
         });
     }
@@ -103,7 +96,7 @@ public class JdbcDAO implements StaffDAO{
             
         	con = DriverManager.getConnection(DATA_SOURCE);
             
-            pst = con.prepareStatement("DELETE FROM STAFF WHERE Id = (?)");
+            pst = con.prepareStatement("DELETE FROM STAFF WHERE ID = (?)");
             pst.setLong(1, id);
             pst.executeUpdate();
         });
@@ -167,7 +160,7 @@ public class JdbcDAO implements StaffDAO{
                 staff.setId(rs.getLong(1));
                 staff.setFname(rs.getString(2));
                 staff.setLname(rs.getString(3));
-                staff.setSalary(rs.getInt(4));
+                staff.setMail(rs.getString(4));
                 staffList.add(staff);
             }
         });

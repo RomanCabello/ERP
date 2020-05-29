@@ -18,6 +18,14 @@
             <li><a href="controller?action=liststaff">Show All Employees</a></li>
             <li><a href="controller?action=readbyid">Search Staff by ID</a></li>
             <li><a href="controller?action=readstaff">add new Hire</a></li>
+            
+        </ul>
+        
+        <br>
+        
+        <ul>
+        	<li><a href="controller?action=listequip">List All equipment</a></li>
+        	<li><a href="controller?action=readequip">Add equipment</a></li>
         </ul>
 
          

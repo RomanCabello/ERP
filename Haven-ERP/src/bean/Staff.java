@@ -10,9 +10,21 @@ public class Staff {
 	
 	private String Lname;
 	
+	private String mail;
+	
 	private int salary;
 	
-//	private String area;
+
+	
+	
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 
 	public Long getId() {
 		return id;
@@ -46,43 +58,6 @@ public class Staff {
 		this.salary = salary;
 	}
 
-//	public String getArea() {
-//		return area;
-//	}
-//
-//	public void setArea(String area) {
-//		this.area = area;
-//	}
 	
-	@Override
-	
-	public boolean equals(Object obj)
-	{
-		
-		if (this == obj) {
-			return true;
-		}
-		
-		if (obj == null) {
-			return false;
-		}
-		
-		if (getClass() != obj.getClass())
-		{
-			return false;
-		}
-		
-		final Staff other = (Staff) obj;
-		if (this.salary != other.salary) {
-			return false;
-			
-		}
-		
-		if(!Objects.deepEquals(this.Fname, other.Fname)) {
-			return false;
-		}
-		
-		return Objects.equals(this.id, other.id);
-	}
 	
 }

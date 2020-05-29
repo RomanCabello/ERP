@@ -20,7 +20,7 @@
 
     <body>
 
-        <form class="pure-form pure-form-stacked" action="controller?action=updatestaff&id=${returnedStaff.id}" method="post">
+        <form class="pure-form pure-form-stacked" action="controller?action=updatestaff&id=${returnedStaff.id}&jid=${returnedJob.id}" method="post">
 
             <legend>Enter Staff details:</legend>
 
@@ -36,7 +36,7 @@
             <input id="staffLname" type="text" name="staffLname" value="${returnedStaff.lname}">
 
             <label for="staffSalary">Salary:</label>
-            <input id ="staffSalary" type="text" name="staffSalary" value="${returnedStaff.salary}">
+            <input id ="staffSalary" type="text" name="staffSalary" value="${returnedJob.salary}">
 
             <button class="pure-button pure-button-primary" type="submit">Update</button>
 

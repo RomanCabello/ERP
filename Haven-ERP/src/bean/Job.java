@@ -3,9 +3,25 @@ package bean;
 public class Job {
 	private long id;
 	private long sid;
-	private long aid;
+	private long rid;
 	private String sdate;
 	private String edate;
+	private int salary;
+	
+	
+	
+	public long getRid() {
+		return rid;
+	}
+	public void setRid(long rid) {
+		this.rid = rid;
+	}
+	public int getSalary() {
+		return salary;
+	}
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
 	public long getId() {
 		return id;
 	}
@@ -18,12 +34,7 @@ public class Job {
 	public void setSid(long sid) {
 		this.sid = sid;
 	}
-	public long getAid() {
-		return aid;
-	}
-	public void setAid(long aid) {
-		this.aid = aid;
-	}
+	
 	public String getSdate() {
 		return sdate;
 	}

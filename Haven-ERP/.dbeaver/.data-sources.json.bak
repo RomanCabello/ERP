@@ -1,0 +1,30 @@
+{
+	"folders": {},
+	"connections": {
+		"derby_server-171a9631121-631555cf112a7bdf": {
+			"provider": "generic",
+			"driver": "derby_server",
+			"name": "Derby Server - Haven",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "1527",
+				"database": "Haven",
+				"url": "jdbc:derby://localhost:1527/Haven;create=false",
+				"type": "dev",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}

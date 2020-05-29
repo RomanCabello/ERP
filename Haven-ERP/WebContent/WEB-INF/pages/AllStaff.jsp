@@ -35,7 +35,7 @@
                     <th>Id</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Salary</th>
+                    <th>E-Mail</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -56,7 +56,7 @@
                         <c:out value="${staff.lname}"/>
                     </td>
                     <td>
-                        $<c:out value="${staff.salary}"/>.00
+                        <c:out value="${staff.mail}"/>
                     </td>        
                     <td>
                         <a href="controller?action=deletestaff&del=${staff.id}">Delete</a>

@@ -11,14 +11,18 @@
     </head>
     <body>
         <p>
-            Successfully saved  <c:out value="${sessionScope.staffFname}"/>
-            Successfully saved  <c:out value="${sessionScope.staffLname}"/>
+            Successfully saved  <c:out value="${sessionScope.staffFname}"/><c:out value="${sessionScope.staffLname}"/>
+            <br>
             Staff Salary <c:out value="${sessionScope.staffSalary}"/>
+            <br>
             ID: <c:out value="${sessionScope.id}"/>
+            <br>
+            Password: <c:out value="${sessionScope.pass}"/>
         </p>
 
         <nav>
             <a href="<%= request.getContextPath() %>">Home</a>
         </nav>  
+       
     </body>
 </html>
