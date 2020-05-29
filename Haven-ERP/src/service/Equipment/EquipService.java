@@ -30,4 +30,11 @@ public class EquipService implements IEquipService{
 		return equipDAO.findBroken();
 	}
 
+	@Override
+	public void use(Long id) {
+		// TODO Auto-generated method stub
+		EquipDAO equipDAO = new JdbcDAO();
+		equipDAO.use(id);
+	}
+
 }

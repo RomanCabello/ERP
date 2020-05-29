@@ -133,6 +133,36 @@ public class JdbcDAO implements EquipDAO{
 	
 	
 	
+	@Override
+	public void use(Long id) {
+		// TODO Auto-generated method stub
+		
+		try {
+			Class.forName("org.apache.derby.jdbc.ClientDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+		execute(() -> {
+			
+			con = DriverManager.getConnection(DATA_SOURCE);
+
+			pst = con.prepareStatement("UPDATE EQUIPMENT SET STATUS = 'Unavailable' WHERE ID = (?)");
+			pst.setLong(1, id);
+			
+			
+			pst.executeUpdate();
+			
+			
+		});
+		
+	}
+	
+	
+	
 	private void execute(Executable executable) {
 
         try {

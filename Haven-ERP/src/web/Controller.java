@@ -47,6 +47,8 @@ public class Controller extends HttpServlet {
     private static final String SHOW_STAFF_VIEW = "showStaff.jsp";
     private static final String UPDATE_STAFF_VIEW = "updateStaff.jsp";
     
+ 
+    
 
 	
 	private static final String UNKNOWN_VIEW = "unknown.jsp";
@@ -63,13 +65,22 @@ public class Controller extends HttpServlet {
 	//////////////////////////////////////////////////////////////////EQUIPMENT///////////////////////////////////////////////////////////////
 	
 	private static final String LIST_EQUIP_ACTION = "listequip";
+	private static final String LIST_EQUIP_CLIENT = "semiequip";
 	private static final String READ_EQUIP_ACTION = "readequip";
 	private static final String SAVE_EQUIP_ACTION = "savedequip";
 	private static final String LIST_BROKEN_ACTION = "getbroken";
+	private static final String USE_ACTION = "checkout";
 	
     private static final String ALL_EQUIP_VIEW = "AllEquip.jsp";
+    private static final String ALL_EQUIP_VIEWC = "AllEquipC.jsp";
     private static final String READ_EQUIP_VIEW = "readEquip.jsp";
     private static final String EQUIP_SAVED_VIEW = "savedequip";
+    
+    
+    
+    /////////////////////////////////////////////////////////////////////////CLIENT//////////////////////////////////////////////////////////
+    
+    
 	
 	
        
@@ -172,6 +183,14 @@ public class Controller extends HttpServlet {
 			page = ALL_EQUIP_VIEW;
 		}
 		
+		if (LIST_EQUIP_CLIENT.contentEquals(actionName)) {
+
+			IEquipService service = new EquipService();
+
+			request.setAttribute("equipList", service.findAll());
+			page = ALL_EQUIP_VIEWC;
+		}
+		
 		if (READ_EQUIP_ACTION.equals(actionName)) {
 			
             page = READ_EQUIP_VIEW;
@@ -183,6 +202,20 @@ public class Controller extends HttpServlet {
 
 			request.setAttribute("equipList", service.findBroken());
 			page = ALL_EQUIP_VIEW;
+		}
+		if(USE_ACTION.equals(actionName))
+		{
+			Long id = Long.valueOf(request.getParameter("id"));
+			IEquipService service = new EquipService();
+			
+			
+			service.use(id);
+			
+			request.setAttribute("equipList", service.findAll());
+			
+			page = ALL_EQUIP_VIEWC;
+			
+			
 		}
 		
 		

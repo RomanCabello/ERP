@@ -64,10 +64,10 @@
                         <c:out value="${equip.status}"/>
                     </td>         
                     <td>
-                        <a href="controller?action=deleteequip&id=${equip.id}">Scrap</a>
+                        <a href="controller?action=isbroken&id=${equip.id}">Report as broken</a>
                     </td>
                     <td>
-                        <a href="controller?action=reapair&rep=${equip.id}">Repair</a>
+                        <a href="controller?action=checkout&id=${equip.id}">Use</a>
                     </td>
                 </tr>
             </c:forEach>          

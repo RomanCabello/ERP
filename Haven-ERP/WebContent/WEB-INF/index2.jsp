@@ -15,18 +15,15 @@
         <p>Available actions:</p>
         
         <ul>
-            <li><a href="controller?action=liststaff">Use equipment</a></li>
-            <li><a href="controller?action=readbyid">Search Staff by ID</a></li>
-            <li><a href="controller?action=readstaff">add new Hire</a></li>
+            <li><a href="controller?action=semiequip">See Equipment</a></li>
+            <li><a href="controller?action=readbyid">Cafeteria</a></li>
+            
             
         </ul>
         
         <br>
         
-        <ul>
-        	<li><a href="controller?action=listequip">List All equipment</a></li>
-        	<li><a href="controller?action=readequip">Add equipment</a></li>
-        </ul>
+        
 
          
     </body>

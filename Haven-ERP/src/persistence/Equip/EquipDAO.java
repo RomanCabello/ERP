@@ -9,5 +9,6 @@ public interface EquipDAO {
 	public List<Equipment> findAll();
 	public void save(Equipment equip);
 	public List<Equipment> findBroken();
+	public void use(Long id);
 
 }
