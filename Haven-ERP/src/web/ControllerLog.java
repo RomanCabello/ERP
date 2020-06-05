@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -84,12 +85,29 @@ public class ControllerLog extends HttpServlet {
 			
 			ILoginService service = new LoginService();
 			
+			Login login;
 			
-			auth a = service.auth(mail, pass);
+			if(request.getSession().getAttribute("login") == null)
+			{
+				login = new Login();
+				login.setUsername(mail);
+				login.setPassword(pass);
+				
+				request.getSession().setAttribute("login", login);
+			}else {
+				login = (Login) request.getSession().getAttribute("login");
+			}
+			
+			
+			
+			auth a = service.auth(login.getUsername(), login.getPassword());
 			
 			if(a.isFlag())
 			{
 				Login log  = a.getLogin();
+				Cookie ck = new Cookie("username", mail);
+	            response.addCookie(ck);
+	            
 				if(log.getAccess()<100)
 				{
 					page = LOG_CLIENT_VIEW;
@@ -109,6 +127,8 @@ public class ControllerLog extends HttpServlet {
 			String mail = request.getParameter("Mail");
 			String pass = request.getParameter("Pass");
 			int cc = Integer.parseInt(request.getParameter("CC"));
+			
+			
 			
 			Client client = new Client();
 			client.setCc(cc);

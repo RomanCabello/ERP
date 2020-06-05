@@ -8,5 +8,7 @@ public interface ILoginService {
 	public void save(Login login);
 	
 	public void chpass(String pass);
+	
+	public void delete(Long id);
 
 }

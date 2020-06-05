@@ -11,5 +11,7 @@ public interface IStaffService {
 	public Staff findStaff(Long id);
 	void deleteStaff(Long id);
 	void updateStaff(Staff staff);
+	
+	public List<Staff> StaffFrom(Long id, String area);
 
 }

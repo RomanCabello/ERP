@@ -69,12 +69,17 @@ public class Controller extends HttpServlet {
 	private static final String READ_EQUIP_ACTION = "readequip";
 	private static final String SAVE_EQUIP_ACTION = "savedequip";
 	private static final String LIST_BROKEN_ACTION = "getbroken";
+	private static final String IS_BROKEN_ACTION = "isbroken";
 	private static final String USE_ACTION = "checkout";
 	
     private static final String ALL_EQUIP_VIEW = "AllEquip.jsp";
     private static final String ALL_EQUIP_VIEWC = "AllEquipC.jsp";
     private static final String READ_EQUIP_VIEW = "readEquip.jsp";
     private static final String EQUIP_SAVED_VIEW = "savedequip";
+    private static final String REPAIR_ACTION = "repair";
+    private static final String TICKET_ACTION = "ticket";
+    private static final String SHOW_TICKET = "alltickets";
+    private static final String END_TICKET = "endticket";
     
     
     
@@ -206,10 +211,19 @@ public class Controller extends HttpServlet {
 		if(USE_ACTION.equals(actionName))
 		{
 			Long id = Long.valueOf(request.getParameter("id"));
+			String stat = request.getParameter("stat");
 			IEquipService service = new EquipService();
 			
+			if(stat.equals("Available")||stat.equals("available"))
+			{
 			
-			service.use(id);
+			
+			
+			
+			service.changeto(id,"Unavailable");
+			
+			
+			}
 			
 			request.setAttribute("equipList", service.findAll());
 			
@@ -217,6 +231,57 @@ public class Controller extends HttpServlet {
 			
 			
 		}
+		
+		if(IS_BROKEN_ACTION.equals(actionName))
+		{
+			Long id = Long.valueOf(request.getParameter("id"));
+			String stat = request.getParameter("stat");
+			
+			IEquipService service = new EquipService();
+			if(!stat.equals("Maintenance"))
+			{
+			service.changeto(id, "Broken");
+			}
+			request.setAttribute("equipList", service.findAll());
+			
+			page = ALL_EQUIP_VIEWC; 
+		}
+		
+		
+		if(REPAIR_ACTION.equals(actionName))
+		{
+			Long id = Long.valueOf(request.getParameter("rep"));
+			request.getSession().setAttribute("eid", id);
+			
+			page = "Ticket.jsp";
+		}
+		
+		
+		
+		if(SHOW_TICKET.equals(actionName))
+		{
+			IEquipService service = new EquipService();
+			request.setAttribute("ticketlist", service.AllTickets());
+			
+			page = "AllTickets.jsp";
+		}
+		
+		if(END_TICKET.equals(actionName))
+		{
+			Long tid = Long.valueOf(request.getParameter("tid"));
+			Long eid = Long.valueOf(request.getParameter("eid"));
+			
+			IEquipService service = new EquipService();
+			
+			service.changeto(eid, "Available");
+			service.endticket(tid);
+			
+			request.setAttribute("ticketlist", service.AllTickets());
+			
+			page = "AllTickets.jsp";
+			
+		}
+
 		
 		
 		
@@ -352,6 +417,23 @@ public class Controller extends HttpServlet {
 			
 			
 			page = EQUIP_SAVED_VIEW;
+			
+		}
+		if(TICKET_ACTION.equals(actionName))
+		{
+			Long sid = Long.valueOf(request.getParameter("SID"));
+			Long eid = (Long) request.getSession().getAttribute("eid");
+			String note = request.getParameter("Note");
+			long millis=System.currentTimeMillis();  
+			java.sql.Date date=new java.sql.Date(millis);  
+			String sdate = date.toString(); 
+			
+			IEquipService service = new EquipService();
+			
+			service.changeto(eid, "Maintenance");
+			service.createTicket(sid, eid, sdate, note);
+			
+			page = "/i1";
 			
 		}
 		

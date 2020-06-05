@@ -29,4 +29,10 @@ public class LoginService implements ILoginService{
 		
 	}
 
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

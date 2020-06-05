@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.naming.NamingException;
 
 import bean.Equipment;
+import bean.Ticket;
 import persistence.Executable;
 
 import util.DBUtils;
@@ -134,7 +135,7 @@ public class JdbcDAO implements EquipDAO{
 	
 	
 	@Override
-	public void use(Long id) {
+	public void changeto(Long id, String status) {
 		// TODO Auto-generated method stub
 		
 		try {
@@ -150,8 +151,9 @@ public class JdbcDAO implements EquipDAO{
 			
 			con = DriverManager.getConnection(DATA_SOURCE);
 
-			pst = con.prepareStatement("UPDATE EQUIPMENT SET STATUS = 'Unavailable' WHERE ID = (?)");
-			pst.setLong(1, id);
+			pst = con.prepareStatement("UPDATE EQUIPMENT SET STATUS = (?) WHERE ID = (?)");
+			pst.setString(1, status);
+			pst.setLong(2, id);
 			
 			
 			pst.executeUpdate();
@@ -179,6 +181,112 @@ public class JdbcDAO implements EquipDAO{
             DBUtils.closeConnection(con);
         }
     }
+
+
+	@Override
+	public void createTicket(Long sid, Long eid, String date, String note) {
+		// TODO Auto-generated method stub
+		
+		try {
+			Class.forName("org.apache.derby.jdbc.ClientDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+		execute(() -> {
+			
+			con = DriverManager.getConnection(DATA_SOURCE);
+
+			pst = con.prepareStatement("INSERT INTO TICKET (SID, EID, NOTE, SDATE) VALUES(?,?,?,?)");
+			pst.setLong(1,sid);
+			pst.setLong(2,eid);
+			pst.setString(3,note);
+			pst.setString(4, date);
+			
+			pst.executeUpdate();
+			
+			
+		});
+		
+	}
+
+
+	@Override
+	public void endticket(Long tid) {
+		// TODO Auto-generated method stub
+		
+		try {
+			Class.forName("org.apache.derby.jdbc.ClientDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		long millis=System.currentTimeMillis();  
+		java.sql.Date date=new java.sql.Date(millis);  
+		String edate = date.toString(); 
+
+		execute(() -> {
+			
+			con = DriverManager.getConnection(DATA_SOURCE);
+
+			pst = con.prepareStatement("UPDATE  TICKET SET EDATE = (?) WHERE TID = (?)");
+			pst.setString(1,edate);
+			pst.setLong(2, tid);
+			
+			
+			pst.executeUpdate();
+			
+			
+		});
+		
+	}
+
+
+	@Override
+	public List<Ticket> AllTickets() {
+		// TODO Auto-generated method stub
+		
+		try {
+			Class.forName("org.apache.derby.jdbc.ClientDriver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ArrayList<Ticket> tickets = new ArrayList<Ticket>();
+
+		execute(() -> {
+			
+			con = DriverManager.getConnection(DATA_SOURCE);
+
+			pst = con.prepareStatement("SELECT * FROM TICKET");
+			
+			rs = pst.executeQuery();
+			
+			while(rs.next())
+			{
+				Ticket ticket = new Ticket();
+				ticket.setTid(rs.getLong(1));
+				ticket.setSid(rs.getLong(2));
+				ticket.setEid(rs.getLong(3));
+				ticket.setNote(rs.getString(4));
+				ticket.setSdate(rs.getString(5));
+				ticket.setEdate(rs.getString(6));
+				
+				tickets.add(ticket);
+			}
+			
+			
+		});
+		
+		return tickets;
+		
+		
+	}
 
 
 

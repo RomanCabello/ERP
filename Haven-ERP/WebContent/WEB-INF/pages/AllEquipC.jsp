@@ -28,6 +28,8 @@
 	
 	<h2>All Staff</h2>
 	
+	
+	
 		<a href="controller?action=getbroken">Show only broken equipment</a>
 		<a href="controller?action=listequip">Show all</a>
         <table class="pure-table pure-table-horizontal">
@@ -64,10 +66,10 @@
                         <c:out value="${equip.status}"/>
                     </td>         
                     <td>
-                        <a href="controller?action=isbroken&id=${equip.id}">Report as broken</a>
+                        <a href="controller?action=isbroken&id=${equip.id}&stat=${equip.status}">Report as broken</a>
                     </td>
                     <td>
-                        <a href="controller?action=checkout&id=${equip.id}">Use</a>
+                        <a href="controller?action=checkout&id=${equip.id}&stat=${equip.status}">Use</a>
                     </td>
                 </tr>
             </c:forEach>          

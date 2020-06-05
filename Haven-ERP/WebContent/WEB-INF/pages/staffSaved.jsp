@@ -21,7 +21,7 @@
         </p>
 
         <nav>
-            <a href="<%= request.getContextPath() %>">Home</a>
+            <a href="i1">Home</a>
         </nav>  
        
     </body>

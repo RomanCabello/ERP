@@ -43,4 +43,10 @@ public class StaffService implements IStaffService{
 		staffDAO.updateStaff(staff);
 	}
 
+	@Override
+	public List<Staff> StaffFrom(Long id, String area) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

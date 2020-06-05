@@ -5,40 +5,62 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://unpkg.com/purecss@1.0.0/build/pure-min.css"
-	integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="/resources/css/login.css">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
-<style>
-body {
-	padding: 1em
-}
 
-nav {
-	margin-top: 2em
-}
-</style>
 </head>
 <body>
 	
-	<form class="pure-form pure-form-stacked"
-		action="cl?action=logstaff" method="post">
+<!-- 	<form class="pure-form pure-form-stacked" -->
+<!-- 		action="cl?action=logstaff" method="post"> -->
 
-		<legend>LogIn:</legend>
+<!-- 		<legend>LogIn:</legend> -->
 
-	<label for="LogMail">Mail:</label> <input id="LogMail" type="text"
-			name="LogMail"> <label for="LogPass">Password:</label>
-		<input id="LogPass" type="password" name="LogPass">
-		<button class="pure-button pure-button-primary" type="submit">Submit</button>
+<!-- 	<label for="LogMail">Mail:</label> <input id="LogMail" type="text" -->
+<!-- 			name="LogMail"> <label for="LogPass">Password:</label> -->
+<!-- 		<input id="LogPass" type="password" name="LogPass"> -->
+<!-- 		<button class="pure-button pure-button-primary" type="submit">Submit</button> -->
 
-	</form>
+<!-- 	</form> -->
+
+<%
+	bean.Login log = (bean.Login) request.getSession().getAttribute("login");
+	if(log!=null)
+	{
+		
+		
+		response.sendRedirect("cl");
+		
+	}
+%>
+
+<div class="login-box">
+	<h2>Login</h2>
+	<form action="cl?action=logstaff" method="post">
+    <div class="user-box">
+      <input type="text" name="LogMail" required>
+      <label>Username</label>
+    </div>
+    <div class="user-box">
+      <input type="password" name="LogPass" required>
+      <label>Password</label>
+    </div>
+    <button type="submit">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </button>
+  </form>
+  <br>
+  <div class="register-link"><a href="cl?action=read">Register</a></div>
+  </div>
 	
-	<br>
-	Don't hava an account? <a href="cl?action=read">Register</a>
 	
+
 	
 </body>
 </html>

@@ -67,7 +67,7 @@
                         <a href="controller?action=deleteequip&id=${equip.id}">Scrap</a>
                     </td>
                     <td>
-                        <a href="controller?action=reapair&rep=${equip.id}">Repair</a>
+                        <a href="controller?action=repair&rep=${equip.id}">Repair</a>
                     </td>
                 </tr>
             </c:forEach>          
@@ -75,7 +75,7 @@
         </table>
 
         <nav>
-            <a href="<%= request.getContextPath() %>">Home</a>
+            <a href="i1">Home</a>
         </nav>
 	
 	</body>

@@ -9,8 +9,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body>
+    
+    
+    <%Cookie cookie = request.getCookies()[0]; %>
+    
+    
+    
+    
         
         <h2>Home page</h2>
+        
+        <h3>Welcome <%cookie.getValue(); %></h3>
         
         <p>Available actions:</p>
         
@@ -26,6 +35,7 @@
         <ul>
         	<li><a href="controller?action=listequip">List All equipment</a></li>
         	<li><a href="controller?action=readequip">Add equipment</a></li>
+        	<li><a href="controller?action=alltickets">View Tickets</a></li>
         </ul>
 
          
